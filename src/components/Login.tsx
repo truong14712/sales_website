@@ -10,7 +10,12 @@ let userSchema = yup.object({
   password: yup.string().required().min(6).trim(),
 });
 const Login = () => {
+  const getUser = localStorage.getItem("user");
+  const user: any = getUser ? JSON.parse(getUser) : [];
   const navigate = useNavigate();
+  if (user) {
+    navigate("/");
+  }
   const {
     register,
     handleSubmit,
@@ -91,7 +96,9 @@ const Login = () => {
             type="submit"
             className="hover:shadow-form rounded-md bg-[#6A64F1] py-3 px-8 text-base font-semibold text-white outline-none mx-3"
           >
-            <Link to={"/register"} className="p-4">Register</Link>
+            <Link to={"/register"} className="p-4">
+              Register
+            </Link>
           </button>
         </div>
       </form>

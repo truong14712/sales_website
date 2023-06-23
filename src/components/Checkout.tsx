@@ -6,6 +6,7 @@ import { useNavigate } from "react-router";
 import * as yup from "yup";
 import { addOrder } from "../api/order";
 import { Context } from "../App";
+import { toast } from "react-toastify";
 let orderSchema = yup.object({
   email: yup.string().required().email(),
   name: yup.string().required(),
@@ -18,10 +19,14 @@ const Checkout = () => {
   const { setNumber, number } = useContext<any>(Context);
 
   const getCart = localStorage.getItem("cart");
-  const cart = getCart && JSON.parse(getCart);
+  const cart = getCart ? JSON.parse(getCart) : [];
   const getTotal = localStorage.getItem("total");
   const total = getTotal && JSON.parse(getTotal);
+
   const navigate = useNavigate();
+  if (cart.length === 0) {
+    navigate("/");
+  }
   const {
     register,
     handleSubmit,
@@ -32,7 +37,7 @@ const Checkout = () => {
 
   const onSubmit = handleSubmit(async (data) => {
     try {
-      const response = await addOrder({
+      await addOrder({
         products: [...cart],
         name: data.name,
         email: data.email,
@@ -43,7 +48,7 @@ const Checkout = () => {
       });
       localStorage.removeItem("cart");
       localStorage.removeItem("total");
-      alert("Đặt hàng thành công");
+      toast.success("Đặt hàng thành công");
       setNumber(0);
       navigate("/");
     } catch (error) {

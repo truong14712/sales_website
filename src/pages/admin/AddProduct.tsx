@@ -6,6 +6,7 @@ import { getAllCategories } from "../../api/categories";
 import { CategoriesType } from "../../interface/categories";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 type Props = {
   insertProduct(data: productType): void;
@@ -36,7 +37,7 @@ const AddProduct = ({ insertProduct }: Props) => {
   });
   const onSubmit = handleSubmit(async (data) => {
     insertProduct(data);
-    alert("Thêm sản phẩm thành công");
+    toast.success("Thêm sản phẩm thành công");
     navigate("/admin/dashboard/products");
   });
 

@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 import { CategoriesType } from "../../interface/categories";
 import { getAllCategories } from "../../api/categories";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 type Props = {
   setProducts: React.Dispatch<React.SetStateAction<productType[]>>;
@@ -52,7 +53,7 @@ const UpdateProduct = ({ setProducts, products }: Props) => {
     const newData: productType[] = products.map((item: productType) =>
       item._id == id ? data : item
     );
-    alert("Cập nhật thành công");
+    toast.success("Cập nhật thành công");
     setProducts(newData);
     navigate("/admin/dashboard/products");
   });

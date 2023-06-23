@@ -27,8 +27,12 @@ import { CategoriesType } from "./interface/categories";
 import AddCategory from "./pages/admin/categories/AddCategory";
 import UpdateCategory from "./pages/admin/categories/UpdateCategory";
 import Checkout from "./components/Checkout";
+import OrderManagement from "./pages/admin/orders/OrderManagement";
+import DetailOrder from "./pages/admin/orders/DetailOrder";
 export const Context = createContext(null);
-
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
+import UpdateStatus from "./pages/admin/orders/UpdateStatus";
 const App = () => {
   const [products, setProducts] = useState<productType[]>([]);
   const [categories, setCategories] = useState<CategoriesType[]>([]);
@@ -144,10 +148,34 @@ const App = () => {
                 />
               }
             />
+            <Route
+              path="/admin/dashboard/orders"
+              element={<OrderManagement />}
+            />
+            <Route
+              path="/admin/dashboard/orders/detail/:id"
+              element={<DetailOrder products={products} />}
+            />
+            <Route
+              path="/admin/dashboard/orders/update/:id"
+              element={<UpdateStatus  />}
+            />
           </Route>
 
           <Route path="*" element={<Error />} />
         </Routes>
+        <ToastContainer
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
       </div>
     </Context.Provider>
   );

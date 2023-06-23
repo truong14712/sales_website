@@ -16,7 +16,12 @@ let userSchema = yup.object({
     .oneOf([yup.ref("password")], "Passwords must match"),
 });
 function Register() {
+  const getUser = localStorage.getItem("user");
+  const user: any = getUser ? JSON.parse(getUser) : [];
   const navigate = useNavigate();
+  if (user) {
+    navigate("/");
+  }
   const {
     register,
     handleSubmit,
@@ -112,7 +117,9 @@ function Register() {
           Register
         </button>
         <button className="hover:shadow-form rounded-md bg-[#6A64F1] py-3 px-8 text-base font-semibold text-white outline-none mx-3">
-          <Link to={"/login"} className="p-4">Login</Link>
+          <Link to={"/login"} className="p-4">
+            Login
+          </Link>
         </button>
       </div>
     </form>

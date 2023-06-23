@@ -1,6 +1,7 @@
 import { Button, Form, Input } from "antd";
 import { CategoriesType } from "../../../interface/categories";
 import { useNavigate } from "react-router";
+import { toast } from "react-toastify";
 interface Props {
   insertCategory(data: CategoriesType): void;
 }
@@ -10,7 +11,7 @@ const AddCategory = ({ insertCategory }: Props) => {
 
   const onFinish = (value: any) => {
     insertCategory(value);
-    alert("Thêm thành danh mục thành công");
+    toast.success("Thêm thành danh mục thành công");
     navigate("/admin/dashboard/categories");
   };
 

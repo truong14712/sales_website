@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import { CategoriesType } from "../../../interface/categories";
 import { updateCategories } from "../../../api/categories";
+import { toast } from "react-toastify";
 interface Props {
   categories: CategoriesType[];
   setCategories: React.Dispatch<React.SetStateAction<CategoriesType[]>>;
@@ -37,7 +38,7 @@ const UpdateCategory = ({ categories, setCategories }: Props) => {
       item._id == id ? data : item
     );
     setCategories(newData);
-    alert("Cập nhật danh mục thành công");
+    toast.success("Cập nhật danh mục thành công");
     navigate("/admin/dashboard/categories");
   };
 

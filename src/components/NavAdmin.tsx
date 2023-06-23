@@ -61,13 +61,13 @@ const NavAdmin = () => {
               data-te-navbar-nav-ref
             >
               <li className="lg:pr-2" data-te-nav-item-ref>
-                <a
+                <Link
                   className="text-neutral-500 hover:text-neutral-700 focus:text-neutral-700 disabled:text-black/30 dark:text-neutral-200 dark:hover:text-neutral-300 dark:focus:text-neutral-300 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-zinc-400"
-                  href="#"
+                  to="/admin/dashboard"
                   data-te-nav-link-ref
                 >
                   Dashboard
-                </a>
+                </Link>
               </li>
               <li className="lg:pr-2" data-te-nav-item-ref>
                 <Link
@@ -87,54 +87,19 @@ const NavAdmin = () => {
                   Categories
                 </Link>
               </li>
+              <li className="lg:pr-2" data-te-nav-item-ref>
+                <Link
+                  className="text-neutral-500 hover:text-neutral-700 focus:text-neutral-700 disabled:text-black/30 dark:text-neutral-200 dark:hover:text-neutral-300 dark:focus:text-neutral-300 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-neutral-400"
+                  to="/admin/dashboard/orders"
+                  data-te-nav-link-ref
+                >
+                  Orders
+                </Link>
+              </li>
             </ul>
           </div>
 
           <div className="relative flex items-center">
-            <div className="relative" data-te-dropdown-ref>
-              <a
-                className="hidden-arrow mr-4 flex items-center text-neutral-500 hover:text-neutral-700 focus:text-neutral-700 disabled:text-black/30 dark:text-neutral-200 dark:hover:text-neutral-300 dark:focus:text-neutral-300 [&.active]:text-black/90 dark:[&.active]:text-neutral-400"
-                href="#"
-                id="dropdownMenuButton1"
-                role="button"
-                data-te-dropdown-toggle-ref
-                aria-expanded="false"
-              ></a>
-              <ul
-                className="absolute left-auto right-0 z-[1000] float-left m-0 mt-1 hidden min-w-max list-none overflow-hidden rounded-lg border-none bg-white bg-clip-padding text-left text-base shadow-lg dark:bg-neutral-700 [&[data-te-dropdown-show]]:block"
-                aria-labelledby="dropdownMenuButton1"
-                data-te-dropdown-menu-ref
-              >
-                <li>
-                  <a
-                    className="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-white/30"
-                    href="#"
-                    data-te-dropdown-item-ref
-                  >
-                    Action
-                  </a>
-                </li>
-                <li>
-                  <a
-                    className="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-white/30"
-                    href="#"
-                    data-te-dropdown-item-ref
-                  >
-                    Another action
-                  </a>
-                </li>
-                <li>
-                  <a
-                    className="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-white/30"
-                    href="#"
-                    data-te-dropdown-item-ref
-                  >
-                    Something else here
-                  </a>
-                </li>
-              </ul>
-            </div>
-
             <div className="relative" data-te-dropdown-ref>
               <div>Xin chào {user && JSON.parse(user).user.name}</div>
               <button
@@ -143,40 +108,6 @@ const NavAdmin = () => {
               >
                 Log out
               </button>
-
-              <ul
-                className="absolute left-auto right-0 z-[1000] float-left m-0 mt-1 hidden min-w-max list-none overflow-hidden rounded-lg border-none bg-white bg-clip-padding text-left text-base shadow-lg dark:bg-neutral-700 [&[data-te-dropdown-show]]:block"
-                aria-labelledby="dropdownMenuButton2"
-                data-te-dropdown-menu-ref
-              >
-                <li>
-                  <a
-                    className="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-white/30"
-                    href="#"
-                    data-te-dropdown-item-ref
-                  >
-                    Action
-                  </a>
-                </li>
-                <li>
-                  <a
-                    className="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-white/30"
-                    href="#"
-                    data-te-dropdown-item-ref
-                  >
-                    Another action
-                  </a>
-                </li>
-                <li>
-                  <a
-                    className="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-white/30"
-                    href="#"
-                    data-te-dropdown-item-ref
-                  >
-                    Something else here
-                  </a>
-                </li>
-              </ul>
             </div>
           </div>
         </div>

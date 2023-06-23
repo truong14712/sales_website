@@ -61,9 +61,6 @@ const Products = ({ products, setSearchResults, searchResults }: IProducts) => {
   const handleStatus = () => {
     setStatus(!status);
   };
-  useEffect(() => {
-    console.log(status);
-  }, [status]);
   return (
     <>
       <div className="container mx-auto ">
