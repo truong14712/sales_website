@@ -10,7 +10,6 @@ interface IProducts {
 const ProductManagement = ({ products, deleteProduct }: IProducts) => {
   const [data, SetData] = useState<productType[]>([]);
   useEffect(() => {
-    console.log(products);
     SetData(products);
   }, [products]);
   const removeProduct = (id: number | string) => {
@@ -32,22 +31,6 @@ const ProductManagement = ({ products, deleteProduct }: IProducts) => {
     <>
       <div className="container mx-auto my-4 p-3">
         <h3 className="text-[32px] ">Quản lý sản phẩm</h3>
-        <div className="text-left my-4">
-          <Link
-            className="hover:shadow-form rounded-md bg-[#544cf3] py-3 px-8 text-base font-semibold text-white outline-none hover:bg-[#726bf7] "
-            to="/admin/dashboard"
-          >
-            Back
-          </Link>
-        </div>
-        <div className="my-4 text-right">
-          <Link
-            className="hover:shadow-form rounded-md bg-[#80df50] py-3 px-8 text-base font-semibold text-black outline-none hover:bg-[#8df757]"
-            to="/admin/dashboard/product/add"
-          >
-            Add product
-          </Link>
-        </div>
         <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
@@ -84,14 +67,14 @@ const ProductManagement = ({ products, deleteProduct }: IProducts) => {
                   <td className="px-4 py-4 text-[16px] ">
                     <Link
                       to={`/admin/dashboard/products/update/${value?._id}`}
-                      className="font-medium text-blue-600 dark:text-blue-500 hover:underline mx-3"
+                      className="font-medium hover:underline mx-3"
                     >
                       <button className="bg-blue-700 font-medium text-white p-3 rounded-md hover:bg-blue-500">
                         Update
                       </button>
                     </Link>
                     <button
-                      className="font-medium text-blue-600 dark:text-blue-500 hover:underline mx-3"
+                      className="hover:underline mx-3"
                       onClick={() => removeProduct(value?._id)}
                     >
                       <button className="bg-red-600 text-white p-3 rounded-md hover:bg-red-500">
@@ -107,7 +90,7 @@ const ProductManagement = ({ products, deleteProduct }: IProducts) => {
         <div className="text-lg">
           <ReactPaginate
             breakLabel="..."
-            nextLabel="next >"
+            nextLabel=">"
             pageCount={totalPages}
             onPageChange={handlePageChange}
             containerClassName={
@@ -116,9 +99,9 @@ const ProductManagement = ({ products, deleteProduct }: IProducts) => {
             activeClassName={"text-white bg-green-500"}
             pageRangeDisplayed={2}
             marginPagesDisplayed={1}
-            previousLabel="< previous"
-            pageClassName="mx-2 p-4 rounded-md"
-            pageLinkClassName=" p-4 text-lg"
+            previousLabel="<"
+            pageClassName="mx-2 p-3 rounded-md"
+            pageLinkClassName=" p-3 text-lg"
             disabledClassName={"bg-gray-200"}
             previousClassName="bg-gray-400 text-white p-3 rounded-md"
             nextClassName="bg-gray-400 text-white p-3 rounded-md"

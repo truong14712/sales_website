@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
+import Button from "./Button";
 
 const NavAdmin = () => {
   const user = localStorage.getItem("user");
@@ -45,17 +46,6 @@ const NavAdmin = () => {
             id="navbarSupportedContent1"
             data-te-collapse-item
           >
-            <a
-              className="mr-2 mt-2 flex items-center text-neutral-900 hover:text-neutral-900 focus:text-neutral-900 dark:text-neutral-200 dark:hover:text-neutral-400 dark:focus:text-neutral-400 lg:mt-0"
-              href="#"
-            >
-              <img
-                src="https://tecdn.b-cdn.net/img/logo/mdb-transaprent-noshadows.png"
-                style={{ height: "15px" }}
-                alt=""
-                loading="lazy"
-              />
-            </a>
             <ul
               className="list-style-none mr-auto flex flex-col pl-0 lg:flex-row"
               data-te-navbar-nav-ref
@@ -101,7 +91,9 @@ const NavAdmin = () => {
 
           <div className="relative flex items-center">
             <div className="relative" data-te-dropdown-ref>
-              <div>Xin chào {user && JSON.parse(user).user.name}</div>
+              <div className="mb-2">
+                Xin chào {user && JSON.parse(user).user.name}
+              </div>
               <button
                 className="border my-1 p-3 hover:bg-slate-500 hover:text-white rounded-md "
                 onClick={handleLogout}

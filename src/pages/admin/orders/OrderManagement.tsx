@@ -3,6 +3,7 @@ import ReactPaginate from "react-paginate";
 import { Link } from "react-router-dom";
 import { getAllOrder } from "../../../api/order";
 import { order_status } from "../../../utils/ordersStatus";
+import Button from "../../../components/Button";
 const OrderManagement = () => {
   const [data, setData] = useState<any>();
 
@@ -75,23 +76,12 @@ const OrderManagement = () => {
                   {order_status[value.status] === "Hoàn thành" ? (
                     ""
                   ) : (
-                    <Link
-                      type="button"
-                      className="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800"
-                      data-hs-overlay="#hs-basic-modal"
-                      to={`update/${value._id}`}
-                    >
-                      Update
+                    <Link to={`update/${value._id}`}>
+                      <Button text={"Update"} />
                     </Link>
                   )}
-                  <Link
-                    className="font-medium text-blue-600 dark:text-blue-500 hover:underline mx-3"
-                    // onClick={() => removeProduct(value?._id)}
-                    to={`detail/${value._id}`}
-                  >
-                    <button className="bg-pink-600 text-white p-3 rounded-md hover:bg-pink-500">
-                      Detail
-                    </button>
+                  <Link to={`detail/${value._id}`}>
+                    <Button text={"Details"} />
                   </Link>
                 </td>
               </tr>
@@ -100,25 +90,25 @@ const OrderManagement = () => {
         </tbody>
       </table>
       <div className="text-lg">
-        <ReactPaginate
-          breakLabel="..."
-          nextLabel="next >"
-          pageCount={totalPages}
-          onPageChange={handlePageChange}
-          containerClassName={
-            "flex justify-center items-center mx-auto container my-4"
-          }
-          activeClassName={"text-white bg-green-500"}
-          pageRangeDisplayed={2}
-          marginPagesDisplayed={1}
-          previousLabel="< previous"
-          pageClassName="mx-2 p-4 rounded-md"
-          pageLinkClassName=" p-4 text-lg"
-          disabledClassName={"bg-gray-200"}
-          previousClassName="bg-gray-400 text-white p-3 rounded-md"
-          nextClassName="bg-gray-400 text-white p-3 rounded-md"
-        />
-      </div>
+          <ReactPaginate
+            breakLabel="..."
+            nextLabel=">"
+            pageCount={totalPages}
+            onPageChange={handlePageChange}
+            containerClassName={
+              "flex justify-center items-center mx-auto container my-4"
+            }
+            activeClassName={"text-white bg-green-500"}
+            pageRangeDisplayed={2}
+            marginPagesDisplayed={1}
+            previousLabel="<"
+            pageClassName="mx-2 p-3 rounded-md"
+            pageLinkClassName=" p-3 text-lg"
+            disabledClassName={"bg-gray-200"}
+            previousClassName="bg-gray-400 text-white p-3 rounded-md"
+            nextClassName="bg-gray-400 text-white p-3 rounded-md"
+          />
+        </div>
     </div>
   );
 };

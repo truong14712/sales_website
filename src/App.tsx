@@ -158,10 +158,9 @@ const App = () => {
             />
             <Route
               path="/admin/dashboard/orders/update/:id"
-              element={<UpdateStatus  />}
+              element={<UpdateStatus />}
             />
           </Route>
-
           <Route path="*" element={<Error />} />
         </Routes>
         <ToastContainer

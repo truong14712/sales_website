@@ -22,7 +22,8 @@ const Checkout = () => {
   const cart = getCart ? JSON.parse(getCart) : [];
   const getTotal = localStorage.getItem("total");
   const total = getTotal && JSON.parse(getTotal);
-
+  const getUser = localStorage.getItem("user");
+  const user = getUser ? JSON.parse(getUser) : [];
   const navigate = useNavigate();
   if (cart.length === 0) {
     navigate("/");
@@ -36,6 +37,7 @@ const Checkout = () => {
   });
 
   const onSubmit = handleSubmit(async (data) => {
+    console.log(data);
     try {
       await addOrder({
         products: [...cart],
@@ -108,6 +110,7 @@ const Checkout = () => {
                   required: true,
                   pattern: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
                 })}
+                value={user ? user?.user?.email : ""}
               />
               {errors.email && (
                 <p className="text-red-500">{errors.email.message}</p>
@@ -144,6 +147,7 @@ const Checkout = () => {
                 {...register("name", {
                   required: true,
                 })}
+                value={user ? user?.user?.name : ""}
               />
               {errors.name && (
                 <p className="text-red-500">{errors.name.message}</p>

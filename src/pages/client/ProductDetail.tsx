@@ -6,6 +6,8 @@ import { Context } from "../../App";
 import { getAllCategories } from "../../api/categories";
 import { CategoriesType } from "../../interface/categories";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import List from "../../components/List";
 interface Prop {
   products: productType[];
   categories: CategoriesType[];
@@ -48,12 +50,14 @@ const ProductDetail = ({ products, categories }: Prop) => {
       // Nếu sản phẩm đã có trong giỏ hàng thì tăng số lượng của nó.
       let newCart = [...cart];
       newCart[existingProductIndex].quantity++;
+      toast.success("Thêm vào giỏ hàng thành công");
+
       setCart(newCart);
     } else {
       // Ngược lại thì thêm sản phẩm mới vào mảng.
       product.quantity = 1;
       let newNumber = number + 1;
-      alert("Thêm vào giỏ hàng thành công");
+      toast.success("Thêm vào giỏ hàng thành công");
       setNumber(newNumber);
       cart.push(product);
     }
@@ -78,31 +82,9 @@ const ProductDetail = ({ products, categories }: Prop) => {
         <div className="text-xl my-4 font-semibold border-t pt-1">
           Sản phẩm tương tự
         </div>
-        <div className="grid grid-cols-6 gap-3 sm:grid-cols-2 md:grid-cols-3 sm:p-3 mb-3 similar_product lg:grid-cols-5">
+        <div className="grid grid-cols-6 gap-3 sm:grid-cols-2 md:grid-cols-3 sm:p-3 mb-3 similar_product lg:grid-cols-3">
           {same.map((value: productType) => {
-            return (
-              <div key={value._id} className="max-h-[400px] border  rounded ">
-                <Link to={`/products/detail/${value._id}`}>
-                  <div className="p-2">
-                    <div className="flex flex-col items-center justify-center w-full">
-                      <h4 className="m-2 text-sm font-normal text-gray-700 dark:text-gray-200">
-                        {value.name}
-                      </h4>
-                      <div>
-                        <img
-                          src={value.image}
-                          alt=""
-                          className="max-w-[180px] "
-                        />
-                      </div>
-                      <p className="text-blue-500">
-                        Giá {value.price.toLocaleString("de-DE")}
-                      </p>
-                    </div>
-                  </div>
-                </Link>
-              </div>
-            );
+            return <List key={value._id} value={value} />;
           })}
         </div>
       </div>

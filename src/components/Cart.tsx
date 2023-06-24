@@ -4,6 +4,7 @@ import { productType } from "../interface/product";
 import { FaPlus, FaMinus, FaTrash } from "react-icons/fa";
 import { Context } from "../App";
 import { Link } from "react-router-dom";
+import Button from "./Button";
 
 const Cart = () => {
   const [cart, setCart] = useState<any>([]);
@@ -150,13 +151,10 @@ const Cart = () => {
           </div>
         </div>
       </div>
-      <div className="my-8">
+      <div className="my-4 flex justify-end mr-8 ">
         {cart.length > 0 && (
-          <Link
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold p-3 rounded"
-            to={"checkout"}
-          >
-            Checkout
+          <Link to={"checkout"}>
+            <Button text={"Checkout"} />
           </Link>
         )}
       </div>

@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import ReactPaginate from "react-paginate";
 import { CategoriesType } from "../../interface/categories";
 import { getAllCategories } from "../../api/categories";
+import Button from "../../components/Button";
+import List from "../../components/List";
 interface IProducts {
   products: productType[];
   setSearchResults: any;
@@ -47,7 +49,7 @@ const Products = ({ products, setSearchResults, searchResults }: IProducts) => {
   const onSubmit = async (e: any) => {
     e.preventDefault();
   };
-  const itemsPerPage = 4;
+  const itemsPerPage = 9;
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = filter
     ? Math.ceil(filter.length / itemsPerPage)
@@ -131,79 +133,35 @@ const Products = ({ products, setSearchResults, searchResults }: IProducts) => {
             );
           })}
       </div>
-      <div className="container mx-auto my-5 lg:mt-0 lg:px-2 lg:w-5/5 grid  gap-8 mt-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <div className="container mx-auto my-5 lg:mt-0 lg:px-2 lg:w-5/5 grid  gap-8 mt-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
         {filter &&
           filter.map((value) => {
-            return (
-              <div className="p-2 border rounded" key={value._id}>
-                <div className="flex flex-col items-center justify-center w-full max-w-lg mx-auto">
-                  <h4 className="mt-2 text-base font-medium text-gray-700 dark:text-gray-200">
-                    {value.name}
-                  </h4>
-                  <div>
-                    <img src={value.image} alt="" className="max-w-[250px] " />
-                  </div>
-                  <p className="text-blue-500">
-                    Giá {value.price.toLocaleString("de-DE")}
-                  </p>
-                </div>
-                <Link to={`/products/detail/${value._id}`}>
-                  <button className="hover:shadow-form rounded-md bg-[#6A64F1] py-3 px-8 text-base font-semibold text-white outline-none mx-3 my-3">
-                    Detail
-                  </button>
-                </Link>
-              </div>
-            );
+            return <List key={value._id} value={value} />;
           })}
       </div>
-      <div className="container mx-auto my-5 lg:mt-0 lg:px-2 lg:w-5/5 grid  gap-8 mt-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <div className="container mx-auto my-5 lg:mt-0 lg:px-2 lg:w-5/5 grid  gap-8 mt-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
         {!filter &&
-          searchResults
-            .slice(startIndex, endIndex)
-            .map((value: productType) => {
-              return (
-                <div className="p-2 border rounded" key={value._id}>
-                  <div className="flex flex-col items-center justify-center w-full max-w-lg mx-auto">
-                    <h4 className="mt-2 text-base font-medium text-gray-700 dark:text-gray-200">
-                      {value.name}
-                    </h4>
-                    <div>
-                      <img
-                        src={value.image}
-                        alt=""
-                        className="max-w-[250px] "
-                      />
-                    </div>
-                    <p className="text-blue-500">
-                      Giá {value.price.toLocaleString("de-DE")}
-                    </p>
-                  </div>
-                  <Link to={`/products/detail/${value._id}`}>
-                    <button className="hover:shadow-form rounded-md bg-[#6A64F1] py-3 px-8 text-base font-semibold text-white outline-none mx-3 my-3">
-                      Detail
-                    </button>
-                  </Link>
-                </div>
-              );
-            })}
+          searchResults.slice(startIndex, endIndex).map((value: any) => {
+            return <List key={value._id} value={value} />;
+          })}
       </div>
       {!filter && (
         <div className="text-lg">
           <ReactPaginate
             breakLabel="..."
-            nextLabel="next >"
+            nextLabel=">"
             pageCount={totalPages}
             onPageChange={handlePageChange}
             containerClassName={
               "flex justify-center items-center mx-auto container my-4"
             }
             activeClassName={"text-white bg-green-500"}
-            pageRangeDisplayed={5}
-            marginPagesDisplayed={10}
+            pageRangeDisplayed={2}
+            marginPagesDisplayed={1}
+            previousLabel="<"
+            pageClassName="mx-2 p-3 rounded-md"
+            pageLinkClassName=" p-3 text-lg"
             disabledClassName={"bg-gray-200"}
-            previousLabel="< previous"
-            pageClassName="mx-2 p-4 rounded-md"
-            pageLinkClassName="p-4 text-lg"
             previousClassName="bg-gray-400 text-white p-3 rounded-md"
             nextClassName="bg-gray-400 text-white p-3 rounded-md"
           />
